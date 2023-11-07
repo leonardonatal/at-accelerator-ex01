@@ -5,15 +5,16 @@
         <fieldset>
           <legend>TV Show Search</legend>
           <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Name of the show"/>
-          <button class="primary">Search</button>
+          <input type="text" id="name" placeholder="Name of the show" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
+          <button class="primary" (click)="searchByName(name)">Search</button>
         </fieldset>
       </form>
     </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <app-tv-show-table></app-tv-show-table>
+        <app-tv-show-table [tvShows]="tvShows" [titles]="titles" *ngIf="!isUpdating"></app-tv-show-table>
+        <p *ngIf="isUpdating" >Loading...</p>
       </div>
   </div>
 </div>
