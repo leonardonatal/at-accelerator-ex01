@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TvShowFacade } from 'src/app/tv-show/facade/tv-show.facade';
 import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 
@@ -9,7 +10,7 @@ import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 })
 export class SearchViewComponent implements OnInit {
 
-  tvShows: TvShow[] = []; //list of TvShow objects
+  tvShows$!: Observable<TvShow[]>; //list of TvShow objects
   isUpdating: boolean = false; //used for showing/hiding loading spinner
   titles = [
     'Name',
@@ -28,11 +29,7 @@ export class SearchViewComponent implements OnInit {
       error: (err) => console.log(err)
     });
     this.tvShowFacade.loadTvShows();
-    this.tvShowFacade.getTvShows$().subscribe((tvShows) => {
-      this.tvShows = tvShows;
-    });
-
-
+    this.tvShows$ = this.tvShowFacade.getTvShows$();
   }
 
   searchByName(name: string) {

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 
 @Component({
@@ -12,7 +13,7 @@ import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 export class TvShowTableComponent {
 
   //input - expects the data from parent.
-  @Input() tvShows!: TvShow[];
+  @Input() tvShows!: Observable<TvShow[]>;
   @Input() titles!: string[];
 
 }

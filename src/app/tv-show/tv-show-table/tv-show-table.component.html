@@ -5,7 +5,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let tvShow of tvShows">
+  <tr *ngFor="let tvShow of tvShows | async">
     <td data-label="Name">{{ tvShow.name }}</td>
     <td data-label="Country">{{ tvShow.country }}</td>
     <td data-label="Year started">{{ tvShow.start_date | date: 'yyyy' }}</td>
