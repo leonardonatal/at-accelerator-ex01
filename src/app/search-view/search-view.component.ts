@@ -12,7 +12,7 @@ import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 export class SearchViewComponent implements OnInit {
 
   tvShows$: Observable<TvShow[]> | null = null; //list of TvShow objects
-  isUpdating: boolean = false; //used for showing/hiding loading spinner
+  isUpdating$!: Observable<boolean>; //used for showing/hiding loading spinner
   titles = [
     'Name',
     'Country',
@@ -25,16 +25,12 @@ export class SearchViewComponent implements OnInit {
   constructor(private tvShowFacade: TvShowFacade, private favoriteTvShowFacade: FavoriteTvShowFacade) {}
 
   ngOnInit() {
-    this.tvShowFacade.isUpdating$().subscribe({
-      next: (isUpdating) => this.isUpdating = isUpdating,
-      error: (err) => console.log(err)
-    });
-    this.tvShowFacade.loadTvShows();
-    this.tvShows$ = this.tvShowFacade.getTvShows$();
+    this.isUpdating$ = this.tvShowFacade.isUpdating$();
+    this.tvShows$  = this.tvShowFacade.loadTvShows();
   }
 
   searchByName(name: string) {
-    this.tvShowFacade.loadTvShows(name);
+    this.tvShows$ = this.tvShowFacade.loadTvShows(name);
   }
 
   onFavoriteToggled(tvShow: TvShow) {
