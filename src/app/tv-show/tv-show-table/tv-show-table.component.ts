@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 
 @Component({
@@ -13,7 +12,17 @@ import { TvShow } from 'src/app/tv-show/models/tv-show.model';
 export class TvShowTableComponent {
 
   //input - expects the data from parent.
-  @Input() tvShows!: Observable<TvShow[]>;
+  @Input() tvShows: TvShow[] | null = null;
   @Input() titles!: string[];
+
+  @Output() favoriteToggled = new EventEmitter<TvShow>();
+
+  constructor() {}
+
+
+  onFavoriteToggled(tvShow: TvShow) {
+    // Toggle the favorite status for the TV show using the facade
+    this.favoriteToggled.emit(tvShow);
+  }
 
 }

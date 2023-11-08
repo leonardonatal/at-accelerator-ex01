@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
-import { TvShowApiService } from "src/app/services/api/tv-show/tv-show.api.service";
-import { TvShowStateService } from "src/app/services/state/tv-show/tv-show.state.service";
+import { TvShowApiService } from "src/app/shared/services/api/tv-show/tv-show.api.service";
+import { TvShowStateService } from "src/app/shared/services/state/tv-show/tv-show.state.service";
 import { TvShow } from "src/app/tv-show/models/tv-show.model";
 
 @Injectable({

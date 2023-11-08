@@ -13,7 +13,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <app-tv-show-table [tvShows]="tvShows$" [titles]="titles" *ngIf="!isUpdating"></app-tv-show-table>
+        <app-tv-show-table [tvShows]="tvShows$ | async" (favoriteToggled)="onFavoriteToggled($event)" [titles]="titles" *ngIf="!isUpdating"></app-tv-show-table>
         <p *ngIf="isUpdating" >Loading...</p>
       </div>
   </div>
