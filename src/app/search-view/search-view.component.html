@@ -13,8 +13,26 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <app-tv-show-table [tvShows]="tvShows$ | async" (favoriteToggled)="onFavoriteToggled($event)" [titles]="titles"></app-tv-show-table>
-        <p *ngIf="isUpdating$ | async" >Loading...</p>
+
+        <ng-container *ngIf="tvShows$ | async as tvShows">
+          <!-- Show a loading indicator or message when isUpdating is true -->
+          <ng-template #loader *ngIf="isUpdating$ | async; else tvShowTable">
+            <div>
+              <!-- Loading indicator or message -->
+              <p>Loading data...</p>
+            </div>
+          </ng-template>
+
+          <!-- Your TV show table component -->
+          <ng-template #tvShowTable>
+            <app-tv-show-table
+              [tvShows]="tvShows"
+              (favoriteToggled)="onFavoriteToggled($event)"
+              [titles]="titles"
+            ></app-tv-show-table>
+          </ng-template>
+        </ng-container>
+
       </div>
   </div>
 </div>

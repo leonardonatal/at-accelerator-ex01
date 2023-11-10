@@ -23,17 +23,20 @@ export class TvShowFacade {
 
   //call this on page/app load to initialize state with list of Tv Shows
   loadTvShows(search: string = ''):Observable<TvShow[]> {
+    console.log('Before setting updating to true');
       this.tvShowStateService.setUpdating(true);
       //make the api call to get the list of Tv Shows
       return this.tvShowApiService.getTvShows(search)
       .pipe(
         map((episoDate) => episoDate.tv_shows),
         tap((tvShows) => {
+          console.log('Inside tap - TV Shows fetched:', tvShows);
           this.tvShowStateService.setTvShow(tvShows);
           this.tvShowStateService.setUpdating(false);
+          console.log('After setting updating to false');
         }),
         catchError((error) => {
-          console.log(error); // Log the error or handle it as needed
+          console.log( 'errooo', error); // Log the error or handle it as needed
           return of([]); // Return an empty array or handle the error data
         })
       );
