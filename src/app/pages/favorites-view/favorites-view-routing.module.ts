@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchViewComponent } from 'src/app/search-view/search-view.component';
+import { FavoritesViewComponent } from 'src/app/pages/favorites-view/favorites-view.component';
 
 const routes: Routes = [
-  { path: '', component: SearchViewComponent},
+  { path: '', component: FavoritesViewComponent},
 ];
 
 @NgModule({
@@ -12,4 +12,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class SearchViewRoutingModule { }
+export class FavoritesViewRoutingModule { }

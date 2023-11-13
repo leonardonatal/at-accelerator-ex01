@@ -1,6 +1,6 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2 } from '@angular/core';
 import { FavoriteTvShowFacade } from 'src/app/shared/services/facade/favorite-tv-show/favorite-tv-show.service';
-import { TvShow } from 'src/app/tv-show/models/tv-show.model';
+import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 
 
 

@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { Observable, catchError, map, of, tap } from "rxjs";
 import { TvShowApiService } from "src/app/shared/services/api/tv-show/tv-show.api.service";
 import { TvShowStateService } from "src/app/shared/services/state/tv-show/tv-show.state.service";
-import { TvShow } from "src/app/tv-show/models/tv-show.model";
+import { TvShowDetails } from "src/app/components/tv-show/models/tv-show-details.model";
+import { TvShow } from "src/app/components/tv-show/models/tv-show.model";
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,19 @@ export class TvShowFacade {
           return of([]); // Return an empty array or handle the error data
         })
       );
+  }
+
+  loadTvShowDetails(id: number): Observable<TvShowDetails> {
+    return this.tvShowApiService.getTvShowDetail(id)
+    .pipe(
+      map((tvShowDetail) => {
+        this.tvShowStateService.setTvShowDetail(tvShowDetail.tvShow);
+        return tvShowDetail.tvShow
+      })
+    )
+  }
+
+  getTvShowDetails$(): Observable<TvShowDetails | undefined> {
+    return this.tvShowStateService.getTvShowDetail$();
   }
 }
