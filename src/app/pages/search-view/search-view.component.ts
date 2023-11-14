@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FavoriteTvShowFacade } from 'src/app/shared/services/facade/favorite-tv-show/favorite-tv-show.service';
-import { TvShowFacade } from 'src/app/tv-show/facade/tv-show.facade';
-import { TvShow } from 'src/app/tv-show/models/tv-show.model';
+import { TvShowFacade } from 'src/app/shared/services/facade/tv-show/tv-show.facade';
+import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 
 @Component({
   selector: 'app-search-view',
@@ -22,7 +23,7 @@ export class SearchViewComponent implements OnInit {
   ];
   name: string = '';
 
-  constructor(private tvShowFacade: TvShowFacade, private favoriteTvShowFacade: FavoriteTvShowFacade) {}
+  constructor(private tvShowFacade: TvShowFacade, private favoriteTvShowFacade: FavoriteTvShowFacade, private router: Router) {}
 
   ngOnInit() {
     this.isUpdating$ = this.tvShowFacade.isUpdating$();
@@ -35,8 +36,11 @@ export class SearchViewComponent implements OnInit {
 
   onFavoriteToggled(tvShow: TvShow) {
     // Toggle the favorite status for the TV show using the facade
-    console.log('heree');
     this.favoriteTvShowFacade.toggleFavorite(tvShow.id);
+  }
+
+  onTvShowDetailsClicked(id: number): void {
+    this.router.navigate(['/tv-show', id]);
   }
 
 }

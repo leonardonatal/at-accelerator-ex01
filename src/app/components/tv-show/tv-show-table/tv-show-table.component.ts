@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TvShow } from 'src/app/tv-show/models/tv-show.model';
+import { Router } from '@angular/router';
+import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 
 @Component({
   selector: 'app-tv-show-table',
@@ -16,6 +17,7 @@ export class TvShowTableComponent {
   @Input() titles!: string[];
 
   @Output() favoriteToggled = new EventEmitter<TvShow>();
+  @Output() tvShowDetailsClicked = new EventEmitter<number>();
 
   constructor() {}
 
@@ -23,6 +25,10 @@ export class TvShowTableComponent {
   onFavoriteToggled(tvShow: TvShow) {
     // Toggle the favorite status for the TV show using the facade
     this.favoriteToggled.emit(tvShow);
+  }
+
+  onTvShowDetailsClicked(id: number): void {
+    this.tvShowDetailsClicked.emit(id);
   }
 
 }

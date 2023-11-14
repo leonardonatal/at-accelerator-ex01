@@ -1,4 +1,4 @@
-import { TvShow } from "src/app/tv-show/models/tv-show.model";
+import { TvShow } from "src/app/components/tv-show/models/tv-show.model";
 
 export interface Episodate {
   total: number;

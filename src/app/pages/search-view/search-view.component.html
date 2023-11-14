@@ -28,6 +28,7 @@
             <app-tv-show-table
               [tvShows]="tvShows"
               (favoriteToggled)="onFavoriteToggled($event)"
+              (tvShowDetailsClicked)="onTvShowDetailsClicked($event)"
               [titles]="titles"
             ></app-tv-show-table>
           </ng-template>
