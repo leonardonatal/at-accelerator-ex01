@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TvShowDetails } from 'src/app/components/tv-show/models/tv-show-details.model';
 
 @Component({
@@ -6,8 +6,12 @@ import { TvShowDetails } from 'src/app/components/tv-show/models/tv-show-details
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit {
 
-  @Input() tvShowDetails: TvShowDetails | null = null;
+  @Input() tvShowDetails!: TvShowDetails;
+
+  ngOnInit(): void {
+    console.log(this.tvShowDetails);
+  }
 
 }
