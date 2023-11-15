@@ -1,24 +1,31 @@
 
 <div class="row mt-4">
   <div class="col text-center">
-    <h1>{{ tvShowDetails?.name }} - {{ tvShowDetails?.country }} - {{ tvShowDetails?.start_date | date: 'yyyy' }}</h1>
+    <h1>{{ tvShowDetails.name }} - {{ tvShowDetails.country }} - {{ tvShowDetails.start_date | date: 'yyyy' }}</h1>
   </div>
 </div>
 
 <div class="row mt-4">
 
   <div class="col-md-6">
-    <img [src]="tvShowDetails?.image_path" alt="Image" class="img-fluid">
+    <img [src]="tvShowDetails.image_path" alt="Image" class="img-fluid">
   </div>
 
   <div class="col-md-6">
-    <div [innerHTML]="tvShowDetails?.description"></div>
+    <div [innerHTML]="tvShowDetails.description"></div>
   </div>
 </div>
 
 <div class="row mt-4">
   <div class="col">
-    <p>{{ tvShowDetails?.rating | number }}/10 (rated by {{ tvShowDetails?.rating_count }} people)</p>
+    <p>{{ tvShowDetails.rating | number }}/10 (rated by {{ tvShowDetails.rating_count }} people)</p>
+  </div>
+</div>
+
+
+<div class="row mt-4">
+  <div class="col">
+    <p>{{ tvShowDetails.episodes.length }} episodes  {{ getNumberOfSeasons() | i18nPlural:{"=0": "", "=1": "01 season", "other": "# seasons"} }}</p>
   </div>
 </div>
 
