@@ -25,7 +25,9 @@
 
 <div class="row mt-4">
   <div class="col">
-    <p>{{ tvShowDetails.episodes.length }} episodes  {{ getNumberOfSeasons() | i18nPlural:{"=0": "", "=1": "01 season", "other": "# seasons"} }}</p>
+    <p [appNumberOfSeasons]="tvShowDetails.episodes"  (numberOfSeasons)="handleNumberOfSeasons($event)">
+      {{ tvShowDetails.episodes.length }} episodes  {{ count | i18nPlural:{"=0": "", "=1": "01 season", "other": "# seasons"} }}
+    </p>
   </div>
 </div>
 
