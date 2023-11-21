@@ -31,9 +31,9 @@ export class IsFavoriteDirective implements OnInit{
 
   private applyFavoriteStyling() {
     if (this.isFavorite) {
-      this.renderer.addClass(this.el.nativeElement, 'favorite');
+      this.renderer.addClass(this.el.nativeElement, 'highlight');
     } else {
-      this.renderer.removeClass(this.el.nativeElement, 'favorite');
+      this.renderer.removeClass(this.el.nativeElement, 'highlight');
     }
   }
 

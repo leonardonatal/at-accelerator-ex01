@@ -36,11 +36,10 @@ export class SearchViewComponent implements OnInit {
 
   onFavoriteToggled(tvShow: TvShow) {
     // Toggle the favorite status for the TV show using the facade
-    this.favoriteTvShowFacade.toggleFavorite(tvShow.id);
+    this.favoriteTvShowFacade.toggleFavorite(tvShow);
   }
 
   onTvShowDetailsClicked(id: number): void {
     this.router.navigate(['/tv-show', id]);
   }
-
 }

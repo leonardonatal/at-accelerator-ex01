@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Episode, TvShowDetails } from 'src/app/components/tv-show/models/tv-show-details.model';
 
 @Component({
@@ -12,6 +12,8 @@ export class DetailsComponent implements OnInit {
 
   @Input() tvShowDetails!: TvShowDetails;
 
+  @Output() goBackClicked = new EventEmitter<void>();
+
   ngOnInit(): void {
     console.log(this.tvShowDetails);
   }
@@ -19,6 +21,10 @@ export class DetailsComponent implements OnInit {
   handleNumberOfSeasons(count: number) {
     console.log(count);
     this.count = count;
+  }
+
+  onGoBackClicked(): void {
+    this.goBackClicked.emit();
   }
 
 

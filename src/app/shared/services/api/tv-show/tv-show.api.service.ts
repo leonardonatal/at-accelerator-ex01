@@ -17,6 +17,7 @@ export class TvShowApiService {
   }
 
   getTvShowDetail(id: number) {
+    console.log('CALLING API');
     return this.http.get<TvShowDetailsResponse>(`${this.apiUrl}show-details?q=${id}`);
   }
 }
