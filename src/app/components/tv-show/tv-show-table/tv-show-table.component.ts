@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 
 @Component({

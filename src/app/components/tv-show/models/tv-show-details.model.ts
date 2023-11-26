@@ -5,7 +5,7 @@ export interface TvShowDetailsResponse {
 }
 
 export interface TvShowDetails extends TvShow {
-  countdown: string;
+  countdown?: Countdown;
   description: string;
   description_source: string;
   end_date: string;
@@ -25,4 +25,8 @@ export interface Episode {
   episode: number;
   name: string;
   season: number;
+}
+
+export interface Countdown {
+  air_date: string;
 }

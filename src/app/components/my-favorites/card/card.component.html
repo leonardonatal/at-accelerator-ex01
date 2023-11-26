@@ -13,7 +13,7 @@
   </div>
   <img [src]="tvShowDetail.image_path" class="section media" />
   <div class="section">
-    Next episode: {{ tvShowDetail.countdown | date }}
+    {{ tvShowDetail | countdown}}
   </div>
 </div>
 
