@@ -9,7 +9,7 @@ import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 })
 export class CardComponent {
 
-  @Input() tvShowDetails!: TvShowDetails[];
+  @Input() tvShowDetails: TvShowDetails[] | null = [];
 
   @Output() tvBookmarkClicked = new EventEmitter<TvShow>();
 

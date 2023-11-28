@@ -24,8 +24,7 @@ export class FavoriteTvShowStateService {
 
   getCachedFavorites(): Observable<TvShowDetails[]> {
     return this.cachedData$.pipe(
-      map(data => Array.from(data.values())),
-      shareReplay(1)
+      map(data => Array.from(data.values()))
     );
   }
 

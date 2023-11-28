@@ -1,6 +1,6 @@
 
   <div class="row">
-      <app-card [tvShowDetails]="tvShowDetails" (tvBookmarkClicked)="onTvBookmarkClicked($event)"></app-card>
+      <app-card [tvShowDetails]="tvShowDetails$ | async" (tvBookmarkClicked)="onTvBookmarkClicked($event)"></app-card>
   </div>
 
 
