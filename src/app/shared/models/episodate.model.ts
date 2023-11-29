@@ -1,8 +1,8 @@
 import { TvShow } from "src/app/components/tv-show/models/tv-show.model";
 
-export interface Episodate {
+export interface SearchResponse<T> {
   total: number;
   page: number;
   pages: number;
-  tv_shows: TvShow[]
+  tv_shows: T[]
 }

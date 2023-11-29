@@ -6,7 +6,7 @@
           <legend>TV Show Search</legend>
           <label for="name">Name</label>
           <input type="text" id="name" placeholder="Name of the show" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
-          <button class="primary" (click)="searchByName(name)">Search</button>
+          <button class="primary" (click)="searchByName(name, 1)">Search</button>
         </fieldset>
       </form>
     </div>
@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <ng-container *ngIf="tvShows$ | async as tvShows">
+        <ng-container *ngIf="tvShows$ | async as response">
           <!-- Show a loading indicator or message when isUpdating is true -->
           <ng-template #loader *ngIf="isUpdating$ | async; else tvShowTable">
             <div>
@@ -26,11 +26,21 @@
           <!-- Your TV show table component -->
           <ng-template #tvShowTable>
             <app-tv-show-table
-              [tvShows]="tvShows"
+              [tvShows]="response.tv_shows"
               (favoriteToggled)="onFavoriteToggled($event)"
               (tvShowDetailsClicked)="onTvShowDetailsClicked($event)"
               [titles]="titles"
             ></app-tv-show-table>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <app-paginator
+                  [pageNumber]="response.page"
+                  [totalPages]="response.total"
+                  (pageChange)="searchByName(name, $event)"
+                ></app-paginator>
+              </div>
+            </div>
           </ng-template>
         </ng-container>
 

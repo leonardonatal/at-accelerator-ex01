@@ -5,6 +5,7 @@ import { TvShowTableComponent } from 'src/app/components/tv-show/tv-show-table/t
 import { SearchViewComponent } from 'src/app/pages/search-view/search-view.component';
 import { FormsModule } from '@angular/forms';
 import { IsFavoriteDirective } from 'src/app/shared/directives/favorite-tv-show/is-favorite.directive';
+import { PaginatorComponent } from 'src/app/components/paginator/paginator.component';
 
 
 
@@ -12,6 +13,7 @@ import { IsFavoriteDirective } from 'src/app/shared/directives/favorite-tv-show/
   declarations: [
     TvShowTableComponent,
     SearchViewComponent,
+    PaginatorComponent,
     IsFavoriteDirective
   ],
   imports: [

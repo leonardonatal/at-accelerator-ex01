@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { FavoriteTvShowFacade } from 'src/app/shared/services/facade/favorite-tv-show/favorite-tv-show.service';
 import { TvShowFacade } from 'src/app/shared/services/facade/tv-show/tv-show.facade';
 import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
+import { SearchResponse } from 'src/app/shared/models/episodate.model';
 
 @Component({
   selector: 'app-search-view',
@@ -12,7 +13,7 @@ import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 })
 export class SearchViewComponent implements OnInit {
 
-  tvShows$: Observable<TvShow[]> | null = null; //list of TvShow objects
+  tvShows$: Observable<SearchResponse<TvShow>> | null = null; //list of TvShow objects
   isUpdating$!: Observable<boolean>; //used for showing/hiding loading spinner
   titles = [
     'Name',
@@ -30,8 +31,8 @@ export class SearchViewComponent implements OnInit {
     this.tvShows$  = this.tvShowFacade.loadTvShows();
   }
 
-  searchByName(name: string) {
-    this.tvShows$ = this.tvShowFacade.loadTvShows(name);
+  searchByName(name: string, page = 1) {
+    this.tvShows$ = this.tvShowFacade.loadTvShows(name, page);
   }
 
   onFavoriteToggled(tvShow: TvShow) {

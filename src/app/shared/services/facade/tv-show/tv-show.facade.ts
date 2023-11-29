@@ -4,6 +4,7 @@ import { TvShowApiService } from "src/app/shared/services/api/tv-show/tv-show.ap
 import { TvShowStateService } from "src/app/shared/services/state/tv-show/tv-show.state.service";
 import { TvShowDetails } from "src/app/components/tv-show/models/tv-show-details.model";
 import { TvShow } from "src/app/components/tv-show/models/tv-show.model";
+import { SearchResponse } from "src/app/shared/models/episodate.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,22 +24,22 @@ export class TvShowFacade {
   }
 
   //call this on page/app load to initialize state with list of Tv Shows
-  loadTvShows(search: string = ''):Observable<TvShow[]> {
+  loadTvShows(search: string = '', page: number = 1): Observable<SearchResponse<TvShow>> {
     console.log('Before setting updating to true');
       this.tvShowStateService.setUpdating(true);
       //make the api call to get the list of Tv Shows
-      return this.tvShowApiService.getTvShows(search)
-      .pipe(
-        map((episoDate) => episoDate.tv_shows),
-        tap((tvShows) => {
-          console.log('Inside tap - TV Shows fetched:', tvShows);
-          this.tvShowStateService.setTvShow(tvShows);
+      return this.tvShowApiService.getTvShows(search, page).pipe(
+        map((response: SearchResponse<TvShow>) => {
+          console.log('Inside tap - TV Shows fetched:', response);
+          this.tvShowStateService.setTvShow(response.tv_shows);
           this.tvShowStateService.setUpdating(false);
           console.log('After setting updating to false');
+          return response; // Return the modified data
         }),
         catchError((error) => {
-          console.log( 'errooo', error); // Log the error or handle it as needed
-          return of([]); // Return an empty array or handle the error data
+          console.log('error', error); // Log the error or handle it as needed
+          this.tvShowStateService.setUpdating(false); // Ensure to set updating to false on error
+          return of({ total: 0, page: 0, pages: 0, tv_shows: [] } as SearchResponse<TvShow>); // Return a default SearchResponse or handle the error data
         })
       );
   }
