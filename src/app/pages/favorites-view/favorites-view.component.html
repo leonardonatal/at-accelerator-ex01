@@ -1,6 +1,5 @@
 
   <div class="row">
-      <app-card [tvShowDetails]="tvShowDetails$ | async" (tvBookmarkClicked)="onTvBookmarkClicked($event)"></app-card>
+      <app-favorite-card  *ngFor="let details of tvShowDetails$ | async" [tvShowDetails]="details" (tvBookmarkClicked)="onTvBookmarkClicked($event)"></app-favorite-card>
   </div>
-
 

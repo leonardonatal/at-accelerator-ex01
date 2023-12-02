@@ -3,13 +3,14 @@ import { TvShowDetails } from 'src/app/components/tv-show/models/tv-show-details
 import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-favorite-card',
+  templateUrl: './favorite-card.component.html',
+  styleUrls: ['./favorite-card.component.css']
 })
-export class CardComponent {
+export class FavoriteCardComponent {
 
-  @Input() tvShowDetails: TvShowDetails[] | null = [];
+  @Input() tvShowDetails!: TvShowDetails;
+
 
   @Output() tvBookmarkClicked = new EventEmitter<TvShow>();
 

@@ -12,6 +12,8 @@ export class TvShowDetailsComponent {
   @Input()
   tvShowDetails!: TvShowDetails;
 
+  currentImage!: string;
+
   constructor(private location: Location) {}
 
   onGoBackClicked(): void {

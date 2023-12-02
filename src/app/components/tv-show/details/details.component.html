@@ -1,38 +1,23 @@
-
-<div class="row mt-4">
-  <div class="col text-center">
-    <h1>{{ tvShowDetails.name }} - {{ tvShowDetails.country }} - {{ tvShowDetails.start_date | date: 'yyyy' }}</h1>
-  </div>
-</div>
-
-<div class="row mt-4">
-
-  <div class="col-md-6">
+<div class="row">
+  <div class="col-sm-6">
     <img [src]="tvShowDetails.image_path" alt="Image" class="img-fluid">
   </div>
-
-  <div class="col-md-6">
-    <div [innerHTML]="tvShowDetails.description"></div>
+  <div class="col-md-6" [innerHTML]="tvShowDetails.description">
   </div>
 </div>
 
-<div class="row mt-4">
-  <div class="col">
+<div class="row">
+  <div class="col-sm-12">
     <p>{{ tvShowDetails.rating | number }}/10 (rated by {{ tvShowDetails.rating_count }} people)</p>
   </div>
 </div>
 
 
-<div class="row mt-4">
-  <div class="col">
+<div class="row">
+  <div class="col-sm-12">
     <p [appNumberOfSeasons]="tvShowDetails.episodes"  (numberOfSeasons)="handleNumberOfSeasons($event)">
       {{ tvShowDetails.episodes.length }} episodes  {{ count | i18nPlural:{"=0": "", "=1": "01 season", "other": "# seasons"} }}
     </p>
   </div>
 </div>
 
-<div class="row mt-4">
-  <div class="col">
-    <button class="btn primary"(click)="onGoBackClicked()"><< Back</button>
-  </div>
-</div>

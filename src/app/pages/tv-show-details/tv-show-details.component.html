@@ -1,7 +1,23 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <app-details [tvShowDetails]="tvShowDetails" (goBackClicked)="onGoBackClicked()"></app-details>
+<h2>{{ tvShowDetails.name }} - {{ tvShowDetails.country }} - {{ tvShowDetails.start_date | date: 'yyyy' }}</h2>
+<hr/>
+<dialog #images>
+  <app-card [title]="tvShowDetails.name">
+    <ng-container actions>
+      <h5 (click)="images.close()">X</h5>
+    </ng-container>
+    <div body>
+      <img [src]="currentImage || tvShowDetails.image_path" alt="">
     </div>
+    <ng-container footer>
+      <img width="60px" class="small" *ngFor="let pic of tvShowDetails.pictures" [src]="pic" (click)="currentImage = pic">
+    </ng-container>
+  </app-card>
+</dialog>
+<div class="section">
+  <div class="container">
+      <app-details [tvShowDetails]="tvShowDetails" (goBackClicked)="onGoBackClicked()"></app-details>
   </div>
 </div>
+
+<button class="tertiary" (click)="images.show()">Show images</button>
+<button class="btn primary"(click)="onGoBackClicked()"><< Back</button>

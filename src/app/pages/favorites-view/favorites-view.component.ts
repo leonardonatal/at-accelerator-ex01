@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { TvShowDetails } from 'src/app/components/tv-show/models/tv-show-details.model';
 import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 import { FavoriteTvShowFacade } from 'src/app/shared/services/facade/favorite-tv-show/favorite-tv-show.service';
+import { LocalstorageService } from 'src/app/shared/services/localstorage/localstorage.service';
 
 @Component({
   selector: 'app-favorites-view',
@@ -14,7 +15,7 @@ export class FavoritesViewComponent implements OnInit{
 
   tvShowDetails$!: Observable<TvShowDetails[]>;
 
-  constructor(private favoriteTvShowFacade: FavoriteTvShowFacade) { }
+  constructor(private favoriteTvShowFacade: FavoriteTvShowFacade, private localstorageService: LocalstorageService) { }
 
   onTvBookmarkClicked(tvShow: TvShow): void {
     this.favoriteTvShowFacade.toggleFavorite(tvShow);
@@ -26,7 +27,7 @@ export class FavoritesViewComponent implements OnInit{
 
   getFavorites(): Observable<TvShowDetails[]> {
     const storedFavorites = this.favoriteTvShowFacade.getCachedFavoriteSnapshot();
-    const localFavorites: number[]  = JSON.parse(localStorage.getItem('favoriteShows') || '');
+    const localFavorites: number[]  = this.localstorageService.getItem('favoriteShows') || [];
     console.log(storedFavorites);
     console.log(localFavorites);
       if (storedFavorites.size === 0) {
