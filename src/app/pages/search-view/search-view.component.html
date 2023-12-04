@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <ng-container *ngIf="tvShows$ | async as response">
+        <ng-container *ngIf="tvShows$ | async as tvShow">
           <!-- Show a loading indicator or message when isUpdating is true -->
           <ng-template #loader *ngIf="isUpdating$ | async; else tvShowTable">
             <div>
@@ -26,7 +26,7 @@
           <!-- Your TV show table component -->
           <ng-template #tvShowTable>
             <app-tv-show-table
-              [tvShows]="response.tv_shows"
+              [tvShows]="tvShow.response"
               (favoriteToggled)="onFavoriteToggled($event)"
               (tvShowDetailsClicked)="onTvShowDetailsClicked($event)"
               [titles]="titles"
@@ -35,8 +35,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <app-paginator
-                  [pageNumber]="response.page"
-                  [totalPages]="response.total"
+                  [pageNumber]="tvShow.page"
+                  [totalPages]="tvShow.total"
                   (pageChange)="searchByName(name, $event)"
                 ></app-paginator>
               </div>

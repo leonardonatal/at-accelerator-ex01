@@ -31,7 +31,7 @@ export class TvShowFacade {
       return this.tvShowApiService.getTvShows(search, page).pipe(
         map((response: SearchResponse<TvShow>) => {
           console.log('Inside tap - TV Shows fetched:', response);
-          this.tvShowStateService.setTvShow(response.tv_shows);
+          this.tvShowStateService.setTvShow(response.response);
           this.tvShowStateService.setUpdating(false);
           console.log('After setting updating to false');
           return response; // Return the modified data
@@ -39,7 +39,7 @@ export class TvShowFacade {
         catchError((error) => {
           console.log('error', error); // Log the error or handle it as needed
           this.tvShowStateService.setUpdating(false); // Ensure to set updating to false on error
-          return of({ total: 0, page: 0, pages: 0, tv_shows: [] } as SearchResponse<TvShow>); // Return a default SearchResponse or handle the error data
+          return of({ total: 0, page: 0, pages: 0, response: [] } as SearchResponse<TvShow>); // Return a default SearchResponse or handle the error data
         })
       );
   }

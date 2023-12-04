@@ -4,7 +4,7 @@ import { SearchResponse } from 'src/app/shared/models/episodate.model';
 import { TvShowDetailsResponse } from 'src/app/components/tv-show/models/tv-show-details.model';
 import { TvShow } from 'src/app/components/tv-show/models/tv-show.model';
 
-const NO_DATA: SearchResponse<TvShow[]> = {page: 1, pages: 0, total: 0, tv_shows: []};
+const NO_DATA: SearchResponse<TvShow[]> = {page: 1, pages: 0, total: 0, response: []};
 @Injectable({
   providedIn: 'root'
 })
